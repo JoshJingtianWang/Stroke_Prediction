@@ -1,0 +1,72 @@
+>lr base
+0.04285561620531151
+
+>lr undersampling
+{'lr__C': 4645152.752227502, 'lr__penalty': 'l2', 'undersampling__n_neighbors': 14, 'undersampling__sampling_strategy': 'majority'}
+0.08775478519908705
+
+>lr oversampling
+{'lr__C': 59979107.62555101, 'lr__penalty': 'l2', 'oversampling__random_state': 42, 'oversampling__sampling_strategy': {1: 1791, 0: 3888}}
+0.10831155133529433
+
+>lr classweights
+{'lr__C': 59979107.62555101, 'lr__class_weight': {1: 10, 0: 1}, 'lr__penalty': 'l2'}
+0.1136497066021512
+
+>knn base
+0.04573314080124152
+
+>knn undersampling
+{'calibrated_knn__base_estimator__n_neighbors': 3, 'calibrated_knn__base_estimator__weights': 'distance', 'calibrated_knn__method': 'isotonic', 'undersampling__n_neighbors': 14, 'undersampling__sampling_strategy': 'majority'}
+0.142146423478646
+
+>knn oversampling
+{'calibrated_knn__base_estimator__n_neighbors': 15, 'calibrated_knn__base_estimator__weights': 'uniform', 'calibrated_knn__method': 'isotonic', 'oversampling__random_state': 42, 'oversampling__sampling_strategy': {1: 1791, 0: 3888}}
+0.10024642842913101
+
+>rf base
+0.0447394980326307
+
+>rf undersampling
+0.10133337739097212
+
+>rf oversampling
+{'oversampling__sampling_strategy': {1: 1791, 0: 3888}, 'oversampling__random_state': 42, 'calibrated_rf__method': 'sigmoid', 'calibrated_rf__base_estimator__n_estimators': 61, 'calibrated_rf__base_estimator__min_samples_split': 2, 'calibrated_rf__base_estimator__min_samples_leaf': 4, 'calibrated_rf__base_estimator__max_features': None, 'calibrated_rf__base_estimator__max_depth': 60}
+0.07942715870003877
+
+>rf classweights
+Fitting 5 folds for each of 30 candidates, totalling 150 fits
+{'calibrated_rf__method': 'sigmoid', 'calibrated_rf__base_estimator__n_estimators': 61, 'calibrated_rf__base_estimator__min_samples_split': 2, 'calibrated_rf__base_estimator__min_samples_leaf': 1, 'calibrated_rf__base_estimator__max_features': None, 'calibrated_rf__base_estimator__max_depth': 85, 'calibrated_rf__base_estimator__class_weight': {1: 7, 0: 1}}
+0.04484412787318527
+
+>XGBoost base
+0.04535169777404946
+
+>XGBoost Classweight
+{'calibrated_xgb__method': 'sigmoid', 'calibrated_xgb__base_estimator__subsample': 0.8, 'calibrated_xgb__base_estimator__scale_pos_weight': 1, 'calibrated_xgb__base_estimator__reg_lambda': 1, 'calibrated_xgb__base_estimator__max_depth': 5, 'calibrated_xgb__base_estimator__learning_rate': 0.1, 'calibrated_xgb__base_estimator__gamma': 0, 'calibrated_xgb__base_estimator__colsample_bytree': 0.5}
+0.044440686606984206
+
+>XGBoost undersampling
+{'calibrated_xgb__base_estimator__colsample_bytree': 0.5, 'calibrated_xgb__base_estimator__gamma': 0.9, 'calibrated_xgb__base_estimator__learning_rate': 0.07, 'calibrated_xgb__base_estimator__max_depth': 7, 'calibrated_xgb__base_estimator__reg_lambda': 0, 'calibrated_xgb__base_estimator__subsample': 0.9, 'calibrated_xgb__method': 'isotonic', 'undersampling__n_neighbors': 187, 'undersampling__sampling_strategy': 'majority'}
+0.4729726062374843
+
+>XGBoost oversampling
+{'oversampling__sampling_strategy': {1: 1393, 0: 3888}, 'oversampling__random_state': 42, 'calibrated_xgb__method': 'sigmoid', 'calibrated_xgb__base_estimator__subsample': 0.8, 'calibrated_xgb__base_estimator__reg_lambda': 10, 'calibrated_xgb__base_estimator__max_depth': 4, 'calibrated_xgb__base_estimator__learning_rate': 0.01, 'calibrated_xgb__base_estimator__gamma': 0.25, 'calibrated_xgb__base_estimator__colsample_bytree': 0.5}
+0.06885103401190479
+
+>SVC classweights
+{'calibrated_svc__method': 'sigmoid', 'calibrated_svc__base_estimator__kernel': 'rbf', 'calibrated_svc__base_estimator__gamma': 100, 'calibrated_svc__base_estimator__degree': 2, 'calibrated_svc__base_estimator__class_weight': {1: 3, 0: 1}, 'calibrated_svc__base_estimator__C': 1}
+0.04652495198682255
+
+>SVC undersampling
+Fitting 5 folds for each of 30 candidates, totalling 150 fits
+{'undersampling__sampling_strategy': 'majority', 'undersampling__n_neighbors': 132, 'calibrated_svc__method': 'isotonic', 'calibrated_svc__base_estimator__kernel': 'rbf', 'calibrated_svc__base_estimator__gamma': 1, 'calibrated_svc__base_estimator__C': 0.1}
+0.4922779773343007
+
+>SVC oversampling
+{'oversampling__sampling_strategy': {1: 1393, 0: 3888}, 'oversampling__random_state': 42, 'calibrated_svc__method': 'isotonic', 'calibrated_svc__base_estimator__kernel': 'rbf', 'calibrated_svc__base_estimator__gamma': 0.01, 'calibrated_svc__base_estimator__C': 0.1}
+0.09446687588500527
+
+>SVC undersampling GridSearchCV
+{'calibrated_svc__base_estimator__C': 0.1, 'calibrated_svc__base_estimator__gamma': 1, 'calibrated_svc__base_estimator__kernel': 'rbf', 'calibrated_svc__method': 'isotonic', 'undersampling__n_neighbors': 138, 'undersampling__sampling_strategy': 'majority'}
+0.49558135823513627
