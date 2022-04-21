@@ -8,6 +8,8 @@ Josh Jingtian Wang
 
 ---
 
+![brain](./images/brain.jpg)
+
 __Abstract:__
 
 A stroke is a medical condition that cuts off the oxygen supply to the brain. In 2015, stroke was the second most frequent cause of death after coronary artery disease. Due to its deadly and sudden nature, it is important to be able to predict the onset of strokes. Here I propose a classification model to predict the onset of strokes using features that can easily be collected from patients.
