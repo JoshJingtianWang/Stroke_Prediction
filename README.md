@@ -37,7 +37,7 @@ Pandas, sklearn, imblearn, matplotlib
 
 __Communication:__
 
-Please refer to the [slides](./presentation_josh_wang.pptx).
+Please refer to the slides ([.ppt](./presentation_josh_wang.pptx)/[.pdf](./presentation_josh_wang.pdf).
 
 
 
