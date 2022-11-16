@@ -35,35 +35,73 @@ Data obtained from the [Stroke Prediction Dataset](https://www.kaggle.com/datase
 Prediction powered by SupportVectorClassifier on sklearn.
 
 Code can be found on [my Github repo](https://github.com/JoshJingtianWang/Stroke_Prediction).
+
+---
 """)
 
 st.sidebar.header('User Input Features')
 
-st.sidebar.markdown("""
-[Example CSV input file](./example.csv)
-""")
+#st.sidebar.markdown("""
+#[Example CSV input file](./example.csv)
+#""")
 
 # Collects user input features into dataframe
-uploaded_file = st.sidebar.file_uploader("Upload your input CSV file", type=["csv"])
+#uploaded_file = st.sidebar.file_uploader("Upload your input CSV file", type=["csv"])
+uploaded_file = None
+
+def update_ft_in():
+    cms=st.session_state.metric
+    st.session_state.ft = int(cms/30.48)
+    st.session_state.inc = cms / 30.48 % 1 * 12
+def update_metric():
+    feet=st.session_state.ft
+    inches=st.session_state.inc
+    tot_inches = feet*12 + inches
+    cms = tot_inches * 2.54
+    st.session_state.metric = cms    
+
 if uploaded_file is not None:
     input_df = pd.read_csv(uploaded_file)
 else:
     def user_input_features():
+        
         gender = st.sidebar.selectbox('Gender',('Male','Female'))
         age = st.sidebar.slider('Age', 0,130,30)
-        hypertension = st.sidebar.selectbox('Hypertension',(0, 1))
-        heart_disease = st.sidebar.selectbox('Heart Disease',(0, 1))
-        ever_married = st.sidebar.selectbox('Ever married',('Yes', 'No'))
+        height_metric = st.sidebar.slider('Height (cm)', 0,240,
+                                          key='metric', on_change = update_metric)
+        with st.sidebar:
+            left, right = st.columns(2)
+            with left: 
+                height_ft = st.number_input("Height (ft)", min_value=0, 
+                                            max_value=7,
+                                            key='ft', on_change = update_ft_in)
+            with right:
+                height_in = st.number_input("Height (in)", min_value=0,
+                                            max_value=11,
+                                            key='inc', on_change = update_ft_in)
+            
+            
+        bmi = st.sidebar.slider('BMI', 8,80,25)
+        smoking = st.sidebar.selectbox('Smoking Status',('never smoked', 'formerly smoked', 'smokes'))
+        hypertension = st.sidebar.selectbox('Hypertension',('No', 'Yes'))
+        heart_disease = st.sidebar.selectbox('Heart Disease',('No', 'Yes'))
+        ever_married = st.sidebar.selectbox('Ever married',('No', 'Yes'))
         work_type = st.sidebar.selectbox('Work Type',('Private', 'Self-employed', 'Govt_job', 'children'))
         Residence_type = st.sidebar.selectbox('Residence Type',('Rural', 'Urban'))
         avg_glucose_level = st.sidebar.slider('Average Glucose Level', 40,300,100)
-        bmi = st.sidebar.slider('BMI', 8,80,25)
-        smoking = st.sidebar.selectbox('Smoking Status',('never smoked', 'formerly smoked', 'smokes'))
+        
+        
+        with st.sidebar:
+            st.write("This code will be printed to the sidebar.")
+            
+        answermap={'No':0,'Yes':1}
+        htanswer=answermap[hypertension]
+        hdanswer=answermap[heart_disease]
         
         data = {'gender': gender,
                 'age': age,
-                'hypertension': hypertension,
-                'heart_disease': heart_disease,
+                'hypertension': htanswer,
+                'heart_disease': hdanswer,
                 'ever_married': ever_married,
                 'work_type': work_type,
                 'Residence_type': Residence_type,
@@ -92,12 +130,12 @@ df = input_df
 #df = df[:1] # Selects only the first row (the user input data)
 
 # Displays the user input features
-st.subheader('User Input features')
+st.subheader('Please the left sidebar to input your features:')
 
 if uploaded_file is not None:
     st.write(df)
 else:
-    st.write('Awaiting CSV file to be uploaded. Currently using example input parameters (shown below).')
+    #st.write('Awaiting CSV file to be uploaded. Currently using example input parameters (shown below).')
     st.write(df)
 
 # Reads in saved classification model
@@ -112,9 +150,10 @@ prediction_proba = load_svc.predict_proba(df)[0][1]
 #penguins_species = np.array(['Adelie','Chinstrap','Gentoo'])
 #st.write(penguins_species[prediction])
 
+st.write('---')
 st.subheader('Prediction Probability')
-st.write('''The probability of stroke onset is 
-
+st.write('''
+The probability of stroke onset is...
 # %.3f'''%prediction_proba)
 
 
