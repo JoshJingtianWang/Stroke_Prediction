@@ -6,9 +6,10 @@ from sklearn.metrics import brier_score_loss, make_scorer
 from imblearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.compose import ColumnTransformer
-from sklearn.preprocessing import PolynomialFeatures
-from sklearn.preprocessing import StandardScaler
+#from sklearn.preprocessing import PolynomialFeatures
+from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from sklearn.calibration import CalibratedClassifierCV
+#from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.svm import SVC
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -67,19 +68,21 @@ else:
         
         gender = st.sidebar.selectbox('Gender',('Male','Female'))
         age = st.sidebar.slider('Age', 0,130,30)
-        height_metric = st.sidebar.slider('Height (cm)', 0,240,
-                                          key='metric', on_change = update_metric)
-        with st.sidebar:
-            left, right = st.columns(2)
-            with left: 
-                height_ft = st.number_input("Height (ft)", min_value=0, 
-                                            max_value=7,
-                                            key='ft', on_change = update_ft_in)
-            with right:
-                height_in = st.number_input("Height (in)", min_value=0,
-                                            max_value=11,
-                                            key='inc', on_change = update_ft_in)
-            
+        # height_metric = st.sidebar.slider('Height (cm)', 0,240,
+                                          # key='metric', on_change = update_metric)
+        # with st.sidebar:
+            # left, right = st.columns(2)
+            # with left: 
+                # height_ft = st.number_input("Height (ft)", min_value=0, 
+                                            # max_value=7,
+                                            # key='ft', on_change = update_ft_in)
+            # with right:
+                # height_in = st.number_input("Height (in)", min_value=0,
+                                            # max_value=11,
+                                            # key='inc', on_change = update_ft_in)
+        
+        # height_metric = st.sidebar.slider('Height (cm)', 0,240,
+                                          # key='metric', on_change = update_metric)    
             
         bmi = st.sidebar.slider('BMI', 8,80,25)
         smoking = st.sidebar.selectbox('Smoking Status',('never smoked', 'formerly smoked', 'smokes'))
@@ -139,7 +142,7 @@ else:
     st.write(df)
 
 # Reads in saved classification model
-load_svc = pickle.load(open('stroke_gs_svc.pkl', 'rb'))
+load_svc = pickle.load(open('stroke_gs_svc_old.pkl', 'rb'))
 
 # Apply model to make predictions
 prediction = load_svc.predict(df)
