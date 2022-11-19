@@ -163,7 +163,7 @@ The probability of stroke onset is...
 st.write('See where your probability lands among the test data:')
 
 # Reads in saved X test proba
-X_test_proba = pickle.load(open('X_test_proba.pkl', 'rb'))
+X_test_proba = pickle.load(open('streamlit/X_test_proba_old.pkl', 'rb'))
 percentile=percentileofscore(X_test_proba, prediction_proba)
 #plotting the result in histogram
 fig = plt.figure(figsize=(10, 4))
