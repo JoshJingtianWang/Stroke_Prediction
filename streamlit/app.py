@@ -68,6 +68,7 @@ else:
         
         gender = st.sidebar.selectbox('Gender',('Male','Female'))
         age = st.sidebar.slider('Age', 0,130,30)
+        avg_glucose_level = st.sidebar.slider('Average Glucose Level', 40,300,100)
         # height_metric = st.sidebar.slider('Height (cm)', 0,240,
                                           # key='metric', on_change = update_metric)
         # with st.sidebar:
@@ -83,15 +84,14 @@ else:
         
         # height_metric = st.sidebar.slider('Height (cm)', 0,240,
                                           # key='metric', on_change = update_metric)    
-            
-        bmi = st.sidebar.slider('BMI', 8,80,25)
         smoking = st.sidebar.selectbox('Smoking Status',('never smoked', 'formerly smoked', 'smokes'))
+        bmi = st.sidebar.slider('BMI', 8,80,25)
         hypertension = st.sidebar.selectbox('Hypertension',('No', 'Yes'))
         heart_disease = st.sidebar.selectbox('Heart Disease',('No', 'Yes'))
         ever_married = st.sidebar.selectbox('Ever married',('No', 'Yes'))
         work_type = st.sidebar.selectbox('Work Type',('Private', 'Self-employed', 'Govt_job', 'children'))
         Residence_type = st.sidebar.selectbox('Residence Type',('Rural', 'Urban'))
-        avg_glucose_level = st.sidebar.slider('Average Glucose Level', 40,300,100)
+        
         
         
         with st.sidebar:
@@ -142,7 +142,7 @@ else:
     st.write(df)
 
 # Reads in saved classification model
-load_svc = pickle.load(open('stroke_gs_svc_old.pkl', 'rb'))
+load_svc = pickle.load(open('../stroke_gs_svc_old.pkl', 'rb'))
 
 # Apply model to make predictions
 prediction = load_svc.predict(df)
