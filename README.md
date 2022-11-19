@@ -39,6 +39,8 @@ __Communication:__
 
 Please refer to the slides ([.ppt](./presentation_josh_wang_new.pptx)/[.pdf](./presentation_josh_wang_new.pdf)).
 
+The model is deployed here as an [interactive app](https://joshjingtianwang-stroke-prediction-streamlitapp-t9mabj.streamlit.app/).
+
 
 
 
