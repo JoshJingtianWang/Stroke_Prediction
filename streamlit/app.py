@@ -142,7 +142,7 @@ else:
     st.write(df)
 
 # Reads in saved classification model
-load_svc = pickle.load(open('../stroke_gs_svc_old.pkl', 'rb'))
+load_svc = pickle.load(open('streamlit/stroke_gs_svc_old.pkl', 'rb'))
 
 # Apply model to make predictions
 prediction = load_svc.predict(df)
